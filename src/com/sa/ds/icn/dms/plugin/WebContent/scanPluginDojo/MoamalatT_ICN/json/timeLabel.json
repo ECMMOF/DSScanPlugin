@@ -1,0 +1,13 @@
+{
+"identifier": "id",
+"label": "name",
+"items": [
+	{"id":"MINUTE","name":"دقيقة","value":"MINUTE"},
+	{"id":"HOUR","name":"ساعة","value":"HOUR"},
+	{"id":"DAY","name":"يوم","value":"DAY"},
+	{"id":"MONTH","name":"شهر","value":"MONTH"}
+
+	
+]
+	}
+	
