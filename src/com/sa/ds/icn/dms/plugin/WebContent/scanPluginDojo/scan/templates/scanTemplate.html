@@ -1,0 +1,257 @@
+<div>
+
+	<input type='hidden' id='strHostIP' value='' /> <input type='hidden'
+		id='intPort' value='' /> <input type='hidden' id='downloadURL'
+		value='' /> <input type='hidden' id='mType' value='' />
+	<div id='container' class='DWTPage body_Broad_width'
+		style='margin: 0 auto;'>
+		<div id='DWTcontainer' class='body_Broad_width'>
+			<table width="100%">
+				<tr>
+					<td>
+						<div data-dojo-type="idx.form.DropDownSelect"
+							title="${Messages.scanner_setting}"
+							data-dojo-props="baseClass :'settingsIcon',title:'${Messages.scanner_setting},' ">
+
+
+							<div data-dojo-type="dijit/TooltipDialog">
+
+
+
+								<table class="tooltip-table">
+									<tr>
+										<td><label for='source' id="select_source">${Messages.select_source}</label></td>
+										<td><select size='1' id='source'
+											style='position: relative; width: 100%;'
+											onchange='source_onchange()'>
+												<option value=''></option>
+										</select></td>
+									</tr>
+
+									<tr>
+										<td><label id="Pixel_Type">${Messages.Pixel_Type}</label>
+										</td>
+										<td>
+										
+										<input type="radio" id="BW" name="PixelType">
+											<label for="BW" id="BWlbl">${Messages.BW}</label>
+										<input type="radio" id="Gray" name="PixelType"> 
+											<label for="Gray" id="Graylbl">${Messages.Gray}</label>
+										<input type="radio" id="RGB" name="PixelType"> 
+											<label id="RGBlbl" for="RGB">${Messages.RGB}</label>
+										</td>
+									</tr>
+
+									<tr>
+										<td>${Messages.document_scan_type}</td>
+										<td><label style='display: none;' for='imgTypejpeg2'> <input type='radio' value='jpg' name='ImageType' id='imgTypejpeg2' onclick='rd_onclick();' />JPEG
+										</label> <label style='display: none;' for='imgTypetiff2'> <input type='radio'
+												value='tif' name='ImageType' id='imgTypetiff2'
+												onclick='rdTIFF_onclick();' />TIFF
+										</label> <label style='display: none;' for='imgTypepng2'> <input type='radio'
+												value='png' name='ImageType' id='imgTypepng2'
+												onclick='rd_onclick();' />PNG
+										</label> <label for='imgTypepdf2'> <input type='radio'
+												value='pdf' name='ImageType' id='imgTypepdf2'
+												onclick='rdPDF_onclick();' />PDF
+										</label></td>
+									</tr>
+									<tr>
+
+
+
+										<td align="center" colspan="2"><input type="checkbox"
+											id="ShowUI"> <label id="lblShowUI" for="ShowUI">${Messages.ShowUI}</label>
+
+											<input type="checkbox" id="ADF"> <label for="ADF"
+											id="ADFlbl">${Messages.ADF}</label> <input type="checkbox"
+											id="Duplex"> <label for="Duplex" id="DuplexLbl">${Messages.Duplex}</label>
+											| <label id="Resolutionlbl" for="Resolution">${Messages.Resolution}</label>
+
+											<select size="1" id="Resolution"><option value="100">100</option>
+												<option value="150">150</option>
+												<option value="200">200</option>
+												<option value="300">300</option>
+										</select></td>
+									</tr>
+								</table>
+
+
+
+
+
+
+
+
+
+
+
+							</div>
+						</div>
+					</td>
+					<td rowspan="2">
+						<div id='DWTemessageContainer' style='width: 500px'>
+							<div style="text-align: center; display: block">
+								<div style="position: relative; float: left; height: 35px;">
+
+									<table style="width: 500px">
+										<tr>
+											<td>
+												<table class="raduis-border">
+													<tr>
+														<td align="center" valign="middle">
+															<button type="button" id="DW_btnFirstImage"
+																onclick="btnFirstImage_onclick()" class="scanFirst"></button>
+														</td>
+														<td align="center" valign="middle">
+															<button id="DW_btnPreImage"
+																onclick="btnPreImage_onclick()" class='scanPrevious'></button>
+														</td>
+														<td align="center" valign="middle">
+															<div class="scanFromTo">
+																<input type="text" class="pagenum1" id="DW_CurrentImage"
+																	readonly="readonly"></input> &nbsp; <input type="text"
+																	class="pagenum2" id="DW_TotalImage" readonly="readonly"></input>
+															</div>
+														</td>
+														<td align="center" valign="middle">
+															<button id="DW_btnNextImage"
+																onclick="btnNextImage_onclick()" class='scanNext'></button>
+														</td>
+														<td align="center" valign="middle"><button
+																id="DW_btnLastImage" onclick="btnLastImage_onclick()"
+																class='scanLast'></button></td>
+													</tr>
+												</table>
+											</td>
+											<td>
+												<table class="raduis-border">
+													<tr>
+
+														<td valign="middle">
+															<button id="DW_btnRemoveCurrentImage"
+																onclick="btnRemoveCurrentImage_onclick()"
+																title="${Messages.remove_selected_images}"
+																class="deleteImg"></button>
+														</td>
+														<td valign="middle"><button
+																id="DW_btnRemoveAllImages"
+																onclick="btnRemoveAllImages_onclick()"
+																title="${Messages.remove_all_images}"
+																class="deleteAllImg"></button></td>
+
+													</tr>
+												</table>
+											</td>
+											<td>
+												<table>
+													<tr>
+														<td>
+															<div id="preview_mode">${Messages.preview_mode}</div>
+														</td>
+														<td width="30px"><select id="DW_PreviewMode"
+															data-dojo-type="ecm/widget/Select"
+															data-dojo-attach-point="DW_PreviewMode"
+															data-dojo-attach-event="change: setlPreviewMode">
+																<option value="0">1X1</option>
+																<option value="1">2X2</option>
+																<option value="2">3X3</option>
+																<option value="3">4X4</option>
+																<option value="4">5X5</option>
+														</select></td>
+													</tr>
+												</table>
+										</tr>
+									</table>
+								</div>
+
+								<br> <br>
+								<div>
+
+									<br>
+								</div>
+							</div>
+						</div>
+						<div id='dwtcontrolContainer'></div>
+						<div id='DWTNonInstallContainerID' style='width: 500px'></div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<table>
+							<tr>
+								<td><div class="rotate-left" title="Rotate Left"
+										alt="Rotate Left" onclick="btnRotateLeft_onclick()"></div></td>
+							</tr>
+							<tr>
+								<td><div class="rotate-right" title="Rotate Right"
+										alt="Rotate Right" onclick="btnRotateRight_onclick()"></div></td>
+							</tr>
+							<tr>
+								<td><div class="rotate-180" alt="Rotate 180"
+										title="Rotate 180" onclick="btnRotate180_onclick()"></div></td>
+							</tr>
+							<tr>
+								<td><div class="mirror" title="Mirror" alt="Mirror"
+										onclick="btnMirror_onclick()"></div></td>
+							</tr>
+							<tr>
+								<td><div class="flip" title="Flip" alt="Flip"
+										onclick="btnFlip_onclick()"></div></td>
+							</tr>
+							<tr>
+								<td><div class="change-image-size" id="btnChangeImageSize"
+										title="Change Image Size" alt="Change Image Size"
+										onclick="btnChangeImageSize_onclick(this);"></div></td>
+							</tr>
+							<tr>
+								<td><div class="crop" title="Crop" alt="Crop"
+										onclick="btnCrop_onclick(this);"></div></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+
+
+			<br />
+		</div>
+	</div>
+	<!-- Custom Dailog Start -->
+	<div id="ImgSizeEditor" style="visibility: hidden;">
+		<ul>
+			<li><label for="img_height"><b id="new_height">${Messages.new_height}</b>
+					<input type="text" id="img_height" style="width: 50%;" size="10" />pixel</label></li>
+			<li><label for="img_width"><b id="new_width">Messages.new_width</b>&nbsp;
+					<input type="text" id="img_width" style="width: 50%;" size="10" />pixel</label></li>
+
+			<li><label id="interpolation_method"></label><select size="1"
+				id="InterpolationMethod"><option value=""></option></select></li>
+			<li style="text-align: center;"><input type="button"
+				value="${Messages.ok}" id="btnChangeImageSizeOK"
+				onclick="btnChangeImageSizeOK_onclick();" /> <input type="button"
+				value="${Messages.cancel}" id="btnCancelChange"
+				onclick="btnCancelChange_onclick();" /></li>
+		</ul>
+	</div>
+
+	<div id='Crop' class='divCrop' style='display: none'>
+		<ul>
+			<li><label for='img_left'><b>left:</b></label> <input
+				type='text' id='img_left' size='4' /></li>
+			<li style='text-align: right'><label for='img_right'><b>right:</b></label>
+				<input type='text' id='img_right' size='4' /></li>
+			<li><label for='img_top'><b>top:</b></label> <input type='text'
+				id='img_top' size='4' /></li>
+			<li style='text-align: right'><label for='img_bottom'><b>bottom:</b></label>
+				<input type='text' id='img_bottom' size='4' /></li>
+		</ul>
+		<div>
+			<input id="btnCropOK" type='button' value='${Messages.ok}'
+				onclick='btnCropOK_onclick(this)' /> <span><input
+				id="btnCropCancel" type='button' value='${Messages.cancel}'
+				onclick='btnCropCancel_onclick()' /></span>
+		</div>
+	</div>
+</div>

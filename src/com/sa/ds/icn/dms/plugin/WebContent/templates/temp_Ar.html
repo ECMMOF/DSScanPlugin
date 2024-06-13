@@ -1,0 +1,205 @@
+scan_content : "
+<html>
+<head>
+<script src='/navigator/Resources/dynamsoft.webtwain.initiate.js'></script>
+<script
+	src='/navigator/scan/Scripts/DWTSample_AdvancedScan_operation.js'></script>
+<script
+	src='/navigator/scan/Scripts/DWTSample_AdvancedScan_initpage_ar.js'></script>
+<script src='/navigator/Resources/dynamsoft.webtwain.config.js'></script>
+<meta http-equiv='Cache-Control'
+	content='no-cache, no-store, must-revalidate' />
+<meta http-equiv='Pragma' content='no-cache' />
+<meta http-equiv='Expires' content='0' />
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8' />
+<meta http-equiv='Content-Language' content='en-us' />
+<meta http-equiv='X-UA-Compatible' content='requiresActiveX=true' />
+<link href='/navigator/scan/Styles/style.css' rel='stylesheet' />
+</head>
+<body>
+	<div id='container' class='DWTPage body_Broad_width'
+		style='margin: 0 auto;'>
+		<div id='DWTcontainer' class='body_Broad_width'>
+			<table>
+				<tr>
+					<td>
+						<div class='Content_Left'>
+							<div id='DWTemessageContainer' style='clear: both; width: 500px'></div>
+							<div id='dwtcontrolContainer'></div>
+							<div id='DWTNonInstallContainerID' style='width: 500px'></div>
+						</div>
+					</td>
+					<td valign='top' align='center' dir='ltr'>
+						<div>
+							<div id='ScanWrapper'>
+								<div id='divScanner' class='divinput'>
+									<ul class='PCollapse'>
+										<hr>
+										<li>
+											<div class='divType'>
+												<div class='mark_arrow expanded'></div>
+												تعديل الصورة
+											</div>
+											<div id='div_ScanImage' class='divTableStyle'>
+												<ul id='ulScaneImageHIDE'>
+													<li style='display: none; position: relative'
+														id='pNoScanner'><a href='javascript: void(0)'
+														class='ShowtblLoadImage'
+														style='color: red; background-color: #f0f0f0; position: relative'
+														id='aNoScanner'><b>عفواً لم يتم تعريف ماسح ضوئي
+																بخاصية مطابق</b></a>
+														<div id='tblLoadImage' style='display: none; height: 80px'>
+															<ul>
+																<li><b>You can:</b><a href='javascript: void(0)'
+																	style='text-decoration: none; padding-left: 200px'
+																	class='ClosetblLoadImage'>X</a></li>
+															</ul>
+															<div id='notformac1'
+																style='background-color: #f0f0f0; padding: 5px;'>
+																<ul>
+																	<li><img alt='arrow'
+																		src='/navigator/scan/Images/arrow.gif' width='9'
+																		height='12' /><b>No Scanner Driver is Installed</b></li>
+																</ul>
+															</div>
+														</div></li>
+													<li style='padding-left: 9px;'><img
+														src='/navigator/scan/Images/ShowEditor.png'
+														title='Show Image Editor' alt='Show Image Editor'
+														onclick='btnShowImageEditor_onclick()'
+														style='display: none;' /> <img
+														src='/navigator/scan/Images/RotateLeft.png'
+														title='Rotate Left' alt='Rotate Left'
+														onclick='btnRotateLeft_onclick()' /> <img
+														src='/navigator/scan/Images/RotateRight.png'
+														title='Rotate Right' alt='Rotate Right'
+														onclick='btnRotateRight_onclick()' /> <img
+														src='/navigator/scan/Images/rotate180.png'
+														alt='Rotate 180' title='Rotate 180'
+														onclick='btnRotate180_onclick()' /> <img
+														src='/navigator/scan/Images/Mirror.png' title='Mirror'
+														alt='Mirror' onclick='btnMirror_onclick()' /> <img
+														src='/navigator/scan/Images/Flip.png' title='Flip'
+														alt='Flip' onclick='btnFlip_onclick()' /> <img
+														src='/navigator/scan/Images/ChangeSize.png'
+														title='Change Image Size' alt='Change Image Size'
+														onclick='btnChangeImageSize_onclick(this);' /> <!--<img src='/navigator/scan/Images/Crop.png' title='Crop' alt='Crop' onclick='btnCrop_onclick(this);'/>-->
+													</li>
+													<li style='text-align: center; display: none'><input
+														id='btnScan' class='bigbutton' style='color: blue;'
+														disabled='disabled' type='button' value='Scan'
+														onclick='acquireImage();' /></li>
+												</ul>
+											</div>
+										</li>
+										<hr>
+										<li>
+											<div class='divType'>
+												<div class='mark_arrow collapsed'></div>
+												إعدادات الماسح الضوئي
+											</div>
+											<div id='div_LoadLocalImage' style='display: none'
+												class='divTableStyle'>
+												<ul>
+													<li style='padding-left: 15px;' dir='rtl' align='right'><label
+														for='source'>اختيار المصدر:</label> <select size='1'
+														id='source' style='position: relative; width: 220px;'
+														onchange='source_onchange()'>
+															<option value=''></option>
+													</select></li>
+													<li id='divProductDetail'></li>
+												</ul>
+												<div id='divUpload' class='divinput'
+													style='position: relative'>
+													<ul style='display: inline;'>
+														<li style='padding-left: 9px;'><label
+															for='imgTypejpeg2'> <input type='radio'
+																value='jpg' name='ImageType' id='imgTypejpeg2'
+																onclick='rd_onclick();' />JPEG
+														</label> <label for='imgTypetiff2'> <input type='radio'
+																value='tif' name='ImageType' id='imgTypetiff2'
+																onclick='rdTIFF_onclick();' />TIFF
+														</label> <label for='imgTypepng2'> <input type='radio'
+																value='png' name='ImageType' id='imgTypepng2'
+																onclick='rd_onclick();' />PNG
+														</label> <label for='imgTypepdf2'> <input type='radio'
+																value='pdf' name='ImageType' id='imgTypepdf2'
+																onclick='rdPDF_onclick();' />PDF
+														</label></li>
+														<li style='display: none; padding-left: 12px;'><label
+															for='MultiPageTIFF_save'><input type='checkbox'
+																id='MultiPageTIFF_save' />Multi-Page TIFF</label> <label
+															for='MultiPagePDF_save'><input type='checkbox'
+																id='MultiPagePDF_save' />Multi-Page PDF </label></li>
+													</ul>
+												</div>
+											</div>
+										</li>
+										<hr>
+									</ul>
+								</div>
+								<div id='divEdit' class='divinput'
+									style='position: relative; display: none'>
+									<ul>
+									</ul>
+								</div>
+							</div>
+							<div id='J_waiting' class='D-dialog ks-dialog-hidden'>
+								<div class='ks-dialog-header'></div>
+								<div class='ks-dialog-body'>
+									<div class='ks-dialog-content'>
+										<div id='InstallBody'></div>
+									</div>
+								</div>
+								<div class='ks-dialog-footer'></div>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan='2'><input type='hidden' id='strHostIP' value='' /><input
+						type='hidden' id='intPort' value='' /><input type='hidden'
+						id='downloadURL' value='' /><input type='hidden' id='mType'
+						value='' /></td>
+				</tr>
+			</table>
+			<br />
+		</div>
+	</div>
+	<!-- Custom Dailog Start -->
+	<div id='ImgSizeEditor' class='divImgSizeEditor' style='display: none'>
+		<ul>
+			<li><label for='img_height'><b>New Height :</b> <input
+					type='text' id='img_height' style='width: 50%;' size='10' />pixel</label></li>
+			<li><label for='img_width'><b>New Width :</b>&nbsp; <input
+					type='text' id='img_width' style='width: 50%;' size='10' />pixel</label></li>
+			<li>Interpolation method: <select size='1'
+				id='InterpolationMethod'><option value=''></option></select></li>
+		</ul>
+		<div>
+			<input type='button' value='  OK  '
+				onclick='btnChangeImageSizeOK_onclick();' /> <span><input
+				type='button' value='Cancel' onclick='btnCancelChange_onclick();' /></span>
+		</div>
+	</div>
+	<div id='Crop' class='divCrop' style='display: none'>
+		<ul>
+			<li><label for='img_left'><b>left:</b></label> <input
+				type='text' id='img_left' size='4' /></li>
+			<li style='text-align: right'><label for='img_right'><b>right:</b></label>
+				<input type='text' id='img_right' size='4' /></li>
+			<li><label for='img_top'><b>top:</b></label> <input type='text'
+				id='img_top' size='4' /></li>
+			<li style='text-align: right'><label for='img_bottom'><b>bottom:</b></label>
+				<input type='text' id='img_bottom' size='4' /></li>
+		</ul>
+		<div>
+			<input type='button' value='  OK  ' onclick='btnCropOK_onclick(this)' />
+			<span><input type='button' value='Cancel'
+				onclick='btnCropCancel_onclick()' /></span>
+		</div>
+	</div>
+	<script> var S = KISSY; S.use([ 'node', 'dom', 'event' ], function(S, Node, DOM, Event) { var $ = S.all, _li = $('li', 'ul.PCollapse'), o = S.one('#dwtcontrolContainer'); $('div.divType', _li).each(function(_this) { _this.on('click', function() { var _thisDOM = S.one(_this); if (_thisDOM.next().css('display') === 'none') { $('.expanded', _li).addClass('collapsed').removeClass('expanded'); $('div.divTableStyle', _li).hide(); _thisDOM.next().show(); $('.mark_arrow', _this).addClass('expanded').removeClass('collapsed'); } }); }); });</script>
+</body>
+</html>
+"

@@ -1,0 +1,359 @@
+<div>
+	<html>
+<head>
+<meta http-equiv='Cache-Control'
+	content='no-cache, no-store, must-revalidate' />
+<meta http-equiv='Pragma' content='no-cache' />
+<meta http-equiv='Expires' content='0' />
+<meta http-equiv='Content-type' content='text/html;charset=UTF-8' />
+<meta http-equiv='Content-Language' content='en-us' />
+<meta http-equiv='X-UA-Compatible' content='requiresActiveX=true' />
+<link
+	href='./plugin/DMSScanPlugin/getResource/scanResources/Styles/style.css'
+	rel='stylesheet' />
+<style>
+.scan {
+	width: 100%;
+	border-spacing: 0px;
+}
+
+.scan td {
+	border: 1px solid red;
+}
+
+.scan table {
+	width: 100%;
+}
+</style>
+</head>
+<body>
+	<div id='container' class='DWTPage body_Broad_width'
+		style='margin: 0 auto;'>
+		<div id='DWTcontainer' class='body_Broad_width'>
+
+			<table width="100%">
+				<tr>
+					<td>
+						<div data-dojo-type="idx.form.DropDownSelect"
+							title="Scan Settings"
+							data-dojo-props="baseClass :'settingsIcon',title:'Scan Settings,' ">
+
+
+							<div data-dojo-type="dijit/TooltipDialog">
+								<table width="100%">
+									<tr>
+										<td valign='top' align='center'>
+
+											<table class="scan-options" width="100%">
+												<!-- <tr>
+								<td class="scanoptions_title" id="modify_image"></td>
+							</tr> -->
+												<tr>
+													<td>
+														<div id='div_ScanImage' class='divTableStyle'></div>
+													</td>
+												</tr>
+												<!-- 	<tr>
+								<td class="scanoptions_title" id="scanner_setting"></td>
+							</tr> -->
+												<tr>
+													<td>
+
+														<table width="100%">
+															<tr>
+																<td>
+																	<ul id="DWTcontroler">
+																		<li style='padding-left: 15px;'><label
+																			for='source' id="select_source">Select
+																				Source:</label> <select size='1' id='source'
+																			style='position: relative; width: 100%;'
+																			onchange='source_onchange()'>
+																				<option value=''></option>
+																		</select></li>
+																		<li id="divProductDetail"><ul id="divTwainType"
+																				style="height: 70px;">
+																				<li style="padding-left: 12px;"><input
+																					type="checkbox" id="ShowUI"><label
+																					id="lblShowUI" for="ShowUI"></label><input
+																					type="checkbox" id="ADF"><label for="ADF"
+																					id="ADFlbl"></label><input type="checkbox"
+																					id="Duplex"><label for="Duplex"
+																					id="DuplexLbl"></label></li>
+																				<li style="padding-left: 15px;"><label
+																					id="Pixel_Type">Pixel Type:</label><input
+																					type="radio" id="BW" name="PixelType"><label
+																					for="BW" id="BWlbl"></label><input type="radio"
+																					id="Gray" name="PixelType"><label
+																					for="Gray" id="Graylbl"></label><input type="radio"
+																					id="RGB" name="PixelType"><label
+																					id="RGBlbl" for="RGB"></label></li>
+																				<li style="padding-left: 15px;"><label
+																					id="Resolutionlbl" for="Resolution">Resolution:</label><select
+																					size="1" id="Resolution"><option
+																							value="100">100</option>
+																						<option value="150">150</option>
+																						<option value="200">200</option>
+																						<option value="300">300</option></select></li>
+																			</ul></li>
+
+
+
+																	</ul>
+																	<div id='divUpload' class='divinput'
+																		style='position: relative'>
+																		<ul style='display: inline;'>
+																			<li style='padding-left: 9px;'><label
+																				style='display: none;' for='imgTypejpeg2'> <input
+																					style='display: none;' type='radio' value='jpg'
+																					name='ImageType' id='imgTypejpeg2'
+																					onclick='rd_onclick();' />JPEG
+																			</label> <label style='display: none;' for='imgTypetiff2'>
+																					<input style='display: none;' type='radio'
+																					value='tif' name='ImageType' id='imgTypetiff2'
+																					onclick='rdTIFF_onclick();' />TIFF
+																			</label> <label style='display: none;' for='imgTypepng2'>
+																					<input style='display: none;' type='radio'
+																					value='png' name='ImageType' id='imgTypepng2'
+																					onclick='rd_onclick();' />PNG
+																			</label> <label for='imgTypepdf2'> <input
+																					type='radio' value='pdf' name='ImageType'
+																					id='imgTypepdf2' onclick='rdPDF_onclick();' />PDF
+																			</label></li>
+
+																			<li style='display: none; padding-left: 12px;'><label
+																				for='MultiPageTIFF_save'><input
+																					type='checkbox' id='MultiPageTIFF_save' />Multi-Page
+																					TIFF</label> <label for='MultiPagePDF_save'><input
+																					type='checkbox' id='MultiPagePDF_save' />Multi-Page
+																					PDF </label></li>
+																		</ul>
+																	</div>
+
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+											</table>
+
+
+
+
+											<div>
+												<div id='ScanWrapper'>
+													<div id='divEdit' class='divinput'
+														style='position: relative; display: none'>
+														<ul>
+														</ul>
+													</div>
+												</div>
+												<div id='J_waiting' class='D-dialog ks-dialog-hidden'>
+													<div class='ks-dialog-header'></div>
+													<div class='ks-dialog-body'>
+														<div class='ks-dialog-content'>
+															<div id='InstallBody'></div>
+														</div>
+													</div>
+													<div class='ks-dialog-footer'></div>
+												</div>
+											</div>
+										</td>
+
+									</tr>
+									<tr>
+										<td></td>
+
+									</tr>
+									<tr>
+										<td colspan='2'><input type='hidden' id='strHostIP'
+											value='' /><input type='hidden' id='intPort' value='' /><input
+											type='hidden' id='downloadURL' value='' /><input
+											type='hidden' id='mType' value='' /></td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</td>
+					<td rowspan="2">
+						<div id='DWTemessageContainer' style='width: 500px'>
+							<div style="text-align: center; display: block">
+								<div
+									style="position: relative; float: left; width: 422px; height: 35px;">
+
+									<table w>
+										<tr>
+											<td align="center" valign="top">
+												<button type="button" id="DW_btnFirstImage"
+													onclick="btnFirstImage_onclick()" class="scanFirst"></button>
+											</td>
+											<td align="center" valign="top">
+												<button id="DW_btnPreImage" onclick="btnPreImage_onclick()"
+													class='scanPrevious'></button>
+											</td>
+											<td align="center" valign="top">
+												<div class="scanFromTo">
+													<input type="text" class="pagenum1" id="DW_CurrentImage"
+														readonly="readonly"></input> &nbsp; <input type="text"
+														class="pagenum2" id="DW_TotalImage" readonly="readonly"></input>
+												</div>
+											</td>
+											<td align="center" valign="top">
+												<button id="DW_btnNextImage"
+													onclick="btnNextImage_onclick()" class='scanNext'></button>
+											</td>
+											<td align="center" valign="top"><button
+													id="DW_btnLastImage" onclick="btnLastImage_onclick()"
+													class='scanLast'></button></td>
+											<td><select id="DW_PreviewMode"
+												data-dojo-type="ecm/widget/Select">
+													<option value="0">1X1</option>
+													<option value="1">2X2</option>
+													<option value="2">3X3</option>
+													<option value="3">4X4</option>
+													<option value="4">5X5</option>
+											</select></td>
+											<td>
+												<div id="DW_btnRemoveCurrentImage"
+													onclick="btnRemoveCurrentImage_onclick()"
+													data-dojo-type="ecm/widget/Button" value="Remove Selected"></div>
+											</td>
+											<td><div id="DW_btnRemoveAllImages"
+													onclick="btnRemoveAllImages_onclick()"
+													data-dojo-type="ecm/widget/Button" value="Remove All"></div></td>
+										</tr>
+									</table>
+								</div>
+								<div
+									style="position: relative; float: left; width: 150px; height: 35px;"
+									id="preview_mode"></div>
+								<br> <br>
+								<div>
+
+									<br>
+								</div>
+							</div>
+						</div>
+						<div id='dwtcontrolContainer'></div>
+						<div id='DWTNonInstallContainerID' style='width: 500px'></div>
+					</td>
+				</tr>
+				<tr>
+					<td valign="top">
+						<table>
+							<tr>
+								<td><img
+									src="./plugin/DMSScanPlugin/getResource/scanResources/scanImages/1.png"
+									title="Rotate Left" alt="Rotate Left"
+									onclick="btnRotateLeft_onclick()"></td>
+							</tr>
+							<tr>
+								<td><img
+									src="./plugin/DMSScanPlugin/getResource/scanResources/scanImages/2.png"
+									title="Rotate Right" alt="Rotate Right"
+									onclick="btnRotateRight_onclick()"></td>
+							</tr>
+							<tr>
+								<td><img
+									src="./plugin/DMSScanPlugin/getResource/scanResources/scanImages/3.png"
+									alt="Rotate 180" title="Rotate 180"
+									onclick="btnRotate180_onclick()"></td>
+							</tr>
+							<tr>
+								<td><img
+									src="./plugin/DMSScanPlugin/getResource/scanResources/scanImages/4.png"
+									title="Mirror" alt="Mirror" onclick="btnMirror_onclick()"></td>
+							</tr>
+							<tr>
+								<td><img
+									src="./plugin/DMSScanPlugin/getResource/scanResources/scanImages/5.png"
+									title="Flip" alt="Flip" onclick="btnFlip_onclick()"></td>
+							</tr>
+							<tr>
+								<td><img
+									src="./plugin/DMSScanPlugin/getResource/scanResources/scanImages/6.png"
+									id="btnChangeImageSize" title="Change Image Size"
+									alt="Change Image Size"
+									onclick="btnChangeImageSize_onclick(this);"></td>
+							</tr>
+							<tr>
+								<td><img
+									src="./plugin/DMSScanPlugin/getResource/scanResources/scanImages/7.png"
+									title="Crop" alt="Crop" onclick="btnCrop_onclick(this);"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+
+
+
+			<br />
+		</div>
+	</div>
+	<!-- Custom Dailog Start -->
+	<div id="ImgSizeEditor" style="visibility: hidden;">
+		<ul>
+			<li><label for="img_height"><b id="new_height"></b> <input
+					type="text" id="img_height" style="width: 50%;" size="10" />pixel</label></li>
+			<li><label for="img_width"><b id="new_width"></b>&nbsp;
+					<input type="text" id="img_width" style="width: 50%;" size="10" />pixel</label></li>
+
+			<li><label id="interpolation_method"></label><select size="1"
+				id="InterpolationMethod"><option value=""></option></select></li>
+			<li style="text-align: center;"><input type="button"
+				value="   OK   " id="btnChangeImageSizeOK"
+				onclick="btnChangeImageSizeOK_onclick();" /> <input type="button"
+				value=" Cancel " id="btnCancelChange"
+				onclick="btnCancelChange_onclick();" /></li>
+		</ul>
+	</div>
+
+	<div id='Crop' class='divCrop' style='display: none'>
+		<ul>
+			<li><label for='img_left'><b>left:</b></label> <input
+				type='text' id='img_left' size='4' /></li>
+			<li style='text-align: right'><label for='img_right'><b>right:</b></label>
+				<input type='text' id='img_right' size='4' /></li>
+			<li><label for='img_top'><b>top:</b></label> <input type='text'
+				id='img_top' size='4' /></li>
+			<li style='text-align: right'><label for='img_bottom'><b>bottom:</b></label>
+				<input type='text' id='img_bottom' size='4' /></li>
+		</ul>
+		<div>
+			<input id="btnCropOK" type='button' value='  OK  '
+				onclick='btnCropOK_onclick(this)' /> <span><input
+				id="btnCropCancel" type='button' value='Cancel'
+				onclick='btnCropCancel_onclick()' /></span>
+		</div>
+	</div>
+	<script
+		src='./plugin/DMSScanPlugin/getResource/scanResources/DWT/dynamsoft.webtwain.initiate.js'></script>
+	<script
+		src='./plugin/DMSScanPlugin/getResource/scanResources/Scripts/DWTSample_AdvancedScan_operation.js'></script>
+	<script
+		src='./plugin/DMSScanPlugin/getResource/scanResources/Scripts/DWTSample_AdvancedScan_initpage.js'></script>
+	<script
+		src='./plugin/DMSScanPlugin/getResource/scanResources/DWT/dynamsoft.webtwain.config.js'></script>
+	<script>
+		var S = KISSY;
+		S.use([ 'node', 'dom', 'event' ], function(S, Node, DOM, Event) {
+			var $ = S.all, _li = $('li', 'ul.PCollapse'), o = S
+					.one('#dwtcontrolContainer');
+			$('div.divType', _li).each(
+					function(_this) {
+						_this.on('click', function() {
+							var _thisDOM = S.one(_this);
+							if (_thisDOM.next().css('display') === 'none') {
+								$('.expanded', _li).addClass('collapsed')
+										.removeClass('expanded');
+								$('div.divTableStyle', _li).hide();
+								_thisDOM.next().show();
+								$('.mark_arrow', _this).addClass('expanded')
+										.removeClass('collapsed');
+							}
+						});
+					});
+		});
+	</script>
+</body>
+	</html>
