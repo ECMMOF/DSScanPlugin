@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<project name="DSScanPlugin" default="all" basedir=".">
+
+	<target name="all" depends="clean,compile,compress_js,jar" />
+
+	<path id="classpath">
+		<pathelement location="./lib/navigatorAPI.jar" />
+		<pathelement location="./lib/j2ee.jar" />
+		<pathelement location="./temp" />
+	</path>
+
+	<target name="clean">
+		<delete dir="temp" />
+	</target>
+	
+	<!--start compress -->
+
+		<!--Unzips and extracts all the necessary files to perform a dojo build and compress the sample plugin files for production use -->
+			<target name="unzip_dojo_files">
+				<!--You must provide a value for the dojo source zip file here.  
+				Go download a dojo source zip file from http://download.dojotoolkit.org/ (ie..dojo-release-1.9.3-src.zip) and provide the path here. -->
+				<property name="dojo_src_zip" value="..\ecm\WebContent\dojo.zip" />
+				<!--Provide a path to the WebContent folder of where IBM Content Navigator is installed.  
+				By default, a windows install path can be: C:\Program Files (x86)\IBM\ECMClient\configure\explodedformat\navigator. -->
+				<property name="icn_path" value="..\ecm\WebContent"/>
+				
+				<delete dir="temp/dojo" />
+				<!--<unzip dest="temp/dojo" src="${dojo_src_zip}" />-->
+								
+								<copy todir="temp/dojo" preservelastmodified="yes" verbose="no">
+									<fileset dir="${icn_path}/dojo">
+										<include name="**/*" />
+										<exclude name="**/tests/**"/>
+										<exclude name="**/dojo/tests/**"/>
+										<exclude name="**/dojo/resources/**"/>
+										<exclude name="**/dijit/tests/**"/>
+										<exclude name="**/dijit/resources/**"/>
+										<exclude name="**/dojox/tests/**"/>
+										<exclude name="**/dojox/resources/**"/>
+										<exclude name="**/*.gif"/>
+										<exclude name="**/*.png"/>
+										<exclude name="**/*.bmp"/>
+										<exclude name="**/*.jgz"/>
+										<exclude name="**/*.css"/>
+
+									</fileset>
+								</copy>
+
+				<copy todir="temp/dojo/ecm" preservelastmodified="yes" verbose="no">
+					<fileset dir="${icn_path}/ecm">
+						<include name="**/*" />
+						<exclude name="nls/ecm_*.jgz" />
+						<exclude name="**/FormSigningContainer.js"/>
+						<exclude name="**/DocumentFormContainer.js"/>
+						<exclude name="**/TeamspaceTabPane.js"/>
+						<exclude name="**/PropertiesControllerRuntime.js"/>
+						<exclude name="**/tests/**"/>
+						<exclude name="**/resources/**"/>
+						<exclude name="**/*.jgz"/>
+						<exclude name="**/*.css"/>
+						<exclude name="**/*.gif"/>
+						<exclude name="**/*.png"/>
+						<exclude name="**/*.bmp"/>
+					</fileset>
+				</copy>
+				<copy todir="temp/dojo/pvr" preservelastmodified="yes" verbose="no">
+					<fileset dir="${icn_path}/pvr">
+						<include name="**/*" />
+						<exclude name="**/tests/**"/>
+						<exclude name="**/resources/**"/>
+						<exclude name="**/*.jgz"/>
+						<exclude name="**/*.css"/>
+						<exclude name="**/*.gif"/>
+						<exclude name="**/*.png"/>
+						<exclude name="**/*.bmp"/>
+					</fileset>
+				</copy>
+				<copy todir="temp/dojo/pvd" preservelastmodified="yes" verbose="no">
+					<fileset dir="${icn_path}/pvd">
+						<include name="**/*" />
+						<exclude name="**/tests/**"/>
+						<exclude name="**/resources/**"/>
+						<exclude name="**/*.jgz"/>
+						<exclude name="**/*.css"/>
+						<exclude name="**/*.gif"/>
+						<exclude name="**/*.png"/>
+					</fileset>
+				</copy>
+				<copy todir="temp/dojo/gridx" preservelastmodified="yes" verbose="no">
+					<fileset dir="${icn_path}/gridx">
+						<include name="**/*" />
+						<exclude name="**/tests/**"/>
+						<exclude name="**/resources/**"/>
+						<exclude name="**/*.jgz"/>
+						<exclude name="**/*.css"/>
+						<exclude name="**/*.gif"/>
+						<exclude name="**/*.png"/>
+						<exclude name="**/*.bmp"/>
+						
+					</fileset>
+				</copy>
+				<copy todir="temp/dojo/idx" preservelastmodified="yes" verbose="no">
+					<fileset dir="${icn_path}/idx">
+						<include name="**/*" />
+						<exclude name="**/tests/**"/>
+						<exclude name="**/resources/**"/>
+						<exclude name="**/*.jgz"/>
+						<exclude name="**/*.css"/>
+						<exclude name="**/*.gif"/>
+						<exclude name="**/*.png"/>
+						<exclude name="**/*.bmp"/>
+					</fileset>
+				</copy>
+			</target>	
+		
+
+			<!--Performs a dojo build and compresses the sample plugin files for production use. 
+			It will produce a single minified gzipped file that will perform and load in a much more efficient manner. -->
+			<target name="compress_js"  depends="unzip_dojo_files"  description="Use dojo's build system to concatenate the sample plugin into one javascript file. 
+				At the end it will also compress the concatenated file further using gzip. 
+				Provide this gzipped file in SamplePlugin.getScript() for best performance.">
+				<echo level="info" message="Copying plugin files over..." />
+				<copy todir="temp/dojo/scanPluginDojo" preservelastmodified="yes" verbose="no">
+					<fileset dir="src/com/sa/ds/icn/dms/plugin/WebContent/scanPluginDojo">
+						<include name="**/*" />
+					</fileset>
+
+					<fileset dir="src/com/sa/ds/icn/dms/plugin/WebContent">
+						<include name="ScanPlugin.js" />
+					</fileset>
+					
+					<fileset dir=".">
+						<include name="DSScanPlugin.profile.js" />
+					</fileset>
+				</copy>
+				
+				<echo level="info" message="Running dojo custom build..." />
+				<java dir="${basedir}/temp/dojo/util/buildscripts" fork="true" classname="org.mozilla.javascript.tools.shell.Main" failonerror="true">
+					<classpath path="${basedir}/temp/dojo/util/shrinksafe/js.jar;${basedir}/temp/dojo/util/shrinksafe/shrinksafe.jar;${basedir}/temp/dojo/closure/closure-compiler.jar;${basedir}/temp/dojo/closure/closure-compiler-rhino.jar" />
+					<arg line="${basedir}/temp/dojo/dojo/dojo.js --release" />
+					<arg value="baseUrl=${basedir}/temp/dojo/dojo" />
+					<arg value="profile=${basedir}/DSScanPlugin.profile.js" />
+					<arg value="load=build" />
+				</java>
+				
+				<!-- Copying in the finished optmized files -->
+				<echo>Copy in optmized javascript and css files</echo>
+				<mkdir dir="output"/>
+				<copy todir="output" preservelastmodified="yes" verbose="no">
+					<fileset dir="temp/dojo/release/scanPluginDojo">
+						<include name="ScanPlugin.js" />
+						<include name="ScanPlugin.css" />
+						<include name="*.css" />
+					</fileset>
+				</copy>
+				
+				<!--compressed javascript file -->
+				<gzip  src="output/ScanPlugin.js" destfile="output/ScanPluginV1.js.jgz"/>
+				<copy todir="src/com/sa/ds/icn/dms/plugin/WebContent" file="output/ScanPluginV1.js.jgz" preservelastmodified="yes" verbose="no" />
+				
+				<!--compressed css file -->
+				<gzip  src="src/com/sa/ds/icn/dms/plugin/WebContent/ScanPlugin.css" destfile="src/com/sa/ds/icn/dms/plugin/WebContent/ScanPluginV1.css.jgz"/>
+				
+				<delete dir="temp/dojo" />
+			</target>
+	<!-- end compress -->
+	
+
+	<target name="compile">
+		<mkdir dir="temp" />
+		<javac srcdir="src" destdir="temp" source="1.6" target="1.6"
+			debug="true">
+			<classpath refid="classpath" />
+			<include name="**/*.java" />
+		</javac>
+	</target>
+
+	<target name="jar">
+		<copy todir="temp">
+			<fileset dir="src">
+				<include name="**/WebContent/**" />
+			</fileset>
+		</copy>
+		<jar jarfile="DSScanPlugin.jar">
+			<fileset dir="./temp" includes="**/*" />
+			<manifest>
+				<attribute name="Plugin-Class" value="com.sa.ds.icn.dms.plugin.ScanPlugin" />
+				<section name="build">
+					<attribute name="Built-By" value="${user.name}" />
+					<attribute name="Build" value="${TODAY}" />
+				</section>
+			</manifest>
+		</jar>
+		<delete dir="./temp" />
+	</target>
+
+</project>
