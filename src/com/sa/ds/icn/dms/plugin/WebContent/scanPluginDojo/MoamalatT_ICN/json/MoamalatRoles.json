@@ -1,0 +1,11 @@
+{
+"identifier": "id",
+"label": "name",
+"items": [
+	{"id":1,"name":"Role1"},
+	{"id":2,"name":"Role2"},
+	{"id":3,"name":"Role3"}
+	
+]
+	}
+	

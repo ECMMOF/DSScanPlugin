@@ -1,0 +1,9 @@
+{
+"identifier": "id",
+"label": "name",
+"items": [
+
+{"id":"3","name":"Fedex"},
+{"id":"22","name":"DHL"}
+]
+}
