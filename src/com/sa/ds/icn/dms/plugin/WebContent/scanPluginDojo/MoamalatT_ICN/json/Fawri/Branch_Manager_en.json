@@ -1,0 +1,11 @@
+{
+"identifier": "id",
+"label": "name",
+"items": [
+	{"id":1,"name":"Approve"},
+	{"id":2,"name":"Reject"}
+		
+	
+]
+	}
+	

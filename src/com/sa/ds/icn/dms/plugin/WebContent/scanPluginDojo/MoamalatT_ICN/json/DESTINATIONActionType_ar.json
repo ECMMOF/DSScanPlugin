@@ -1,0 +1,11 @@
+{
+"identifier": "id",
+"label": "name",
+"items": [
+	{"id":-1,"name":"وارد و صادر"},
+	{"id":1,"name":"وارد"},
+	{"id":2,"name":"صادر"}
+	
+]
+	}
+	

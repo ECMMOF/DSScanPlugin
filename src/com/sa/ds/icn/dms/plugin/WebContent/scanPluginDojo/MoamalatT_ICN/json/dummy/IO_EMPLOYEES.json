@@ -1,0 +1,35 @@
+{
+"identifier": "id",
+"label": "name",
+"items": [
+
+{"id":"administrator","name":"مدير النظام"},
+{"id":"test","name":"test"},
+{"id":"Kzahrani","name":"خالد الزهراني"},
+{"id":"Samusaid","name":"صالح المساعد"},
+{"id":"Imdossary","name":"ابراهيم الدوسري"},
+{"id":"mronazi","name":"متعب العنزي"},
+{"id":"Nmotabi","name":"نايف العتيبي"},
+{"id":"habajhmum","name":"حسين باجهموم"},
+{"id":"alobaid","name":"عبدالله العبيد"},
+{"id":"monazi","name":"مسير العنزي"},
+{"id":"amogbel","name":"عبدالعزيز المقبل"},
+{"id":"Azakary","name":"عبدالكريم الزكري"},
+{"id":"Asanad","name":"عبدالعزيز السند"},
+{"id":"Aamri","name":"عبدالله العمري"},
+{"id":"Fqahtani","name":"فالح القحطاني"},
+{"id":"mswayeh","name":"منصور السويح"},
+{"id":"asmathami","name":"عبدالعزيز المتحمي"},
+{"id":"Arowdain","name":"أحمد الرضيان"},
+{"id":"mahsaleh","name":"محمود صالح"},
+{"id":"Amer_ali","name":"عامر التعماني"},
+{"id":"ashubaiki","name":"عادل بن أحمد الشبيكي"},
+{"id":"mamogren","name":"محمد عبدالمحسن بن مقرن"},
+{"id":"aqarni","name":"عبدالله القرني"},
+{"id":"asghamdi","name":"علي بن صالح الغامدي"},
+{"id":"fntadmin","name":"عبدالعزيز المتحمي"},
+{"id":"mahmoudsal","name":"محمود صالح"},
+{"id":"sroumy","name":"Sherif Roumy"}
+
+]
+}

@@ -1,0 +1,147 @@
+{
+
+"identifier": "id",
+"label": "name",
+"items":
+
+[
+    {
+        "name": "اسم الوزارة او المؤسسة او الهيئة ",
+        "id": "root"
+    },
+        {
+            "name": "الادارة العليا",
+            "id": "CEO",
+            "parent": "root"
+        },
+		
+		{
+            "name": "الوكالة الاولى",
+            "id": "Agency1",
+            "parent": "root"
+        },
+            {
+                "name": "الادارة الرئيسية الاولى من الوكالة الاولى",
+                "id": "Dept11",
+                "parent": "Agency1"
+            },
+            {
+                "name": "الادارة الرئيسية الثانية من الوكالة الاولى",
+                "id": "Dept12",
+                "parent": "Agency1"
+            },
+			{
+                "name": "الادارة الرئيسية الثالثة من الوكالة الاولى",
+                "id": "Dept13",
+                "parent": "Agency1"
+            },
+			{
+                "name": "الادارة الرئيسية الرابعة من الوكالة الاولى",
+                "id": "Dept14",
+                "parent": "Agency1"
+            },
+        {
+            "name": "لوكالة الثانية",
+            "id": "Agency2",
+            "parent": "root"
+        },
+            {
+                "name": "الادارة الرئيسية الاولى من الوكالة الثانية",
+                "id": "Dept21",
+                "parent": "Agency2"
+            },
+            {
+                "name": "الادارة الرئيسية الثانية من الوكالة الثانية",
+                "id": "Dept22",
+                "parent": "Agency2"
+            },
+            {
+                "name": "الادارة الرئيسية الثالثة من الوكالة الثانية",
+                "id": "Dept23",
+                "parent": "Agency2"
+            },
+            {
+                "name": "الادارة الرئيسية الرابعة من الوكالة الثانية",
+                "id": "Dept24",
+                "parent": "Agency2"
+            },
+                {
+                    "name": "الادارة الفرعية الاولى",
+                    "id": "dept241",
+                    "parent": "Dept24"
+                },
+                {
+                    "name": "الادارة الفرعية الثانية",
+                    "id": "dept242",
+                    "parent": "Dept24"
+                },
+                {
+                    "name": "الادارة الفرعية الثالثة",
+                    "id": "dept243",
+                    "parent": "Dept24"
+                },
+					 {
+						"name": "فسم 1",
+						"id": "dept2431",
+						"parent": "dept243"
+					},
+					{
+						"name": "قسم 2",
+						"id": "dept2432",
+						"parent": "dept243"
+					},
+					{
+						"name": "قسم 3",
+						"id": "dept2433",
+						"parent": "dept243"
+					},
+					{
+						"name": "قسم 4",
+						"id": "dept2434",
+						"parent": "dept243"
+					},
+						{
+							"name": "شعبة 1",
+							"id": "dept24341",
+							"parent": "dept2434"
+						},
+						{
+							"name": "شعبة 2",
+							"id": "dept24342",
+							"parent": "dept2434"
+						},
+					
+        {
+            "name": "الوكالة الثالثة",
+            "id": "Agency3",
+            "parent": "root"
+        },
+		   {
+            "name": "الوكالة الرابعة",
+            "id": "Agency4",
+            "parent": "root"
+        },
+		{
+            "name": "الفروع",
+            "id": "Branches",
+            "parent": "root"
+        },
+			{
+				"name": "الفرع الاول",
+				"id": "Branche1",
+				"parent": "Branches"
+			},
+			{
+				"name": "الفرع الثاني ",
+				"id": "Branche2",
+				"parent": "Branches"
+			},
+			{
+				"name": "الفرع الثالث",
+				"id": "Branche3",
+				"parent": "Branches"
+			}
+			
+		
+]
+	}

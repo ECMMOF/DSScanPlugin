@@ -1,0 +1,12 @@
+{
+
+"identifier": "id",
+"label": "name",
+"items": [
+
+{"id":"1","name":"CD"},
+{"id":"2","name":"كرتونة"},
+{"id":"3","name":"لفة"},
+{"id":"4","name":"مجلد"}
+]
+	}
