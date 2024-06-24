@@ -15,7 +15,6 @@ public class FileDao extends AbstractDAO {
 	}
 	
 	public Long addFile(FileBean bean) throws DatabaseException {
-	    System.out.println("enter addFile sql method");
 	    String sql = "INSERT INTO DMS_FILES (DOCUMENT_ID, DOCUMENT_CLASS, OCR_STATUS, USER_LDAP_NAME, NO_PAGES, SOURCE_ID, CREATED_DATE, MODIFIED_DATE, DOCUMENT_NAME, INTEGRATION_SYS_ID) "
 	               + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	    try {
@@ -50,7 +49,6 @@ public class FileDao extends AbstractDAO {
 
 	        rs = stmt.getGeneratedKeys();
 	        
-		    System.out.println("end addFile sql method");
 
 	        if (rs.next()) {
 	            return rs.getLong(1);

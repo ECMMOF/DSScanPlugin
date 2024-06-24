@@ -133,7 +133,6 @@ public class AddFilesToFolder extends PluginResponseFilter {
 						documentId = documentId.replace("{", "").replace("}", "");
 					}
 				}else {
-					// Document was not saved successfully
 					return;
 				}
 			}
@@ -165,17 +164,10 @@ public class AddFilesToFolder extends PluginResponseFilter {
 			fileBean.setUserLdapName(userId);
 
 
-//			try (UserDAO userDao = new UserDAO()) {
-//				UserBean userBean = userDao.fetchUserByNameLDAP(userId);
-//				fileBean.setOwnerUserId(userBean.getId());
-//				fileBean.setOwnerDepartmentId(userBean.getDepartmentId());
-//			} catch (Exception e) {
-//				throw new Exception("Error getting user information", e);
-//			}
+
 			
 			Operation op = Operation.getOperationByName(serverType);
 			Long fileId = null;
-			System.out.println("Operation:  "+ op);
 			try (FileDao fileDao = new FileDao()) {
 				if (Operation.ADD_ITEM.equals(op)) {
 					fileId = fileDao.addFile(fileBean);
@@ -189,7 +181,6 @@ public class AddFilesToFolder extends PluginResponseFilter {
 			
 			jsonResponse.put("fileId", fileId);
 			
-//			updateDocument(documentId, fileId);
 			
 			AuditGenerator generator = new AuditGenerator(request, jsonResponse, callbacks, serverType, properties);
 			generator.generateAudit(fileId);
@@ -215,19 +206,15 @@ public class AddFilesToFolder extends PluginResponseFilter {
 	
 	private void updateDocument(String documentId, Long fileId) {
 		try (FileNetConnection con = new FileNetConnection(FileNetConnection.Target.ARCHIVE)) {
-			// Get document and populate property cache.
 			PropertyFilter pf = new PropertyFilter();
 			pf.addIncludeProperty(new FilterElement(null, null, null, "FileID", null));
 			ObjectStore os = con.getObjectStroe();
 			Document doc = Factory.Document.fetchInstance(os, new Id("{" + documentId + "}"),pf );
 	
-			// Return document properties.
 			com.filenet.api.property.Properties props = doc.getProperties();
 	
-			// Change property value.
 			props.putValue("FileID", fileId.intValue());
 	
-			// Save and update property cache.
 			doc.save(RefreshMode.REFRESH );
 		} catch (Exception e) {
 			System.err.println("Failed to set File ID " + fileId + " for document " + documentId);
@@ -235,11 +222,9 @@ public class AddFilesToFolder extends PluginResponseFilter {
 		}
 	}
 	private String getDocumentName(JSONArray properties) {
-		// Access elements of the JSONArray
         for (Object obj : properties) {
         	 if (obj instanceof JSONObject) {
                  JSONObject jsonObj = (JSONObject) obj;
-                 // Access values from the JSONObject
                  String name = (String) jsonObj.get("name");
                  if(name .equals(ConfigManager.getAttributeForDocumentName())) {
                 	 return (String) jsonObj.get("value");

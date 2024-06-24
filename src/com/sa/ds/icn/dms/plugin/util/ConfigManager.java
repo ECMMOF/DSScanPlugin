@@ -49,13 +49,7 @@ public class ConfigManager {
 		}
 	}
 	
-	public static Map<String, String> getWatermarkAttributesMap() {
-		return new HashMap<String, String>(watermarkAttributesMap);
-	}
-	
-	public static boolean isWatermarkEnabled() {
-		return Boolean.parseBoolean(props.getProperty("ENABLE_WATERMARK"));
-	}
+
 
 	public static String getAuditedOperations() {
 		return props.getProperty("AUDITED_OPERATIONS");

@@ -27,19 +27,6 @@ public abstract class AbstractDAO implements AutoCloseable {
 		initConn(datasourceName);
 	}
 
-//    private Connection getConnection(String dataSource) throws SQLException, NamingException, DatabaseException {
-//        InitialContext initContext;
-//        javax.sql.DataSource source = null;
-//        Hashtable<String, String> hashtable = new Hashtable<String, String>();
-//        hashtable.put("java.naming.factory.initial", "com.ibm.websphere.naming.WsnInitialContextFactory");
-//        initContext = new InitialContext(hashtable);
-//        source = (javax.sql.DataSource)initContext.lookup(dataSource);
-//        if (source != null) {
-//        	return source.getConnection();
-//        } else {
-//        	throw new DatabaseException("Error looking up datasource '" + dataSource + "'");
-//        }
-//    }
 	private Connection getConnection(String dataSource) throws SQLException, NamingException, DatabaseException {
 	    InitialContext initContext;
 	    javax.sql.DataSource source = null;
