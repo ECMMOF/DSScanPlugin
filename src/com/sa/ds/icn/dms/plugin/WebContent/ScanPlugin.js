@@ -105,87 +105,87 @@ require(
 							function(repository, items, callback, teamspace,
 									resultSet, parameterMap) {
 								var addContentItemCustomDialog = new AddContentItemCustomDialog();
-								addContentItemCustomDialog.initAndShowDialog(
-										repository, items, callback, teamspace,
-										resultSet, parameterMap);
+								addContentItemCustomDialog.show(repository, null, true, false, null, null, false, null, true);
+
 							});
 
 			// // aziz start
 
-			aspect
-					.after(
-							ecm.widget.ItemSecurityPane.prototype,
-							"startup",
-							function() {
-								console.log("inside startup ItemSecurityPane");
-								ready(lang
-										.hitch(
-												this,
-												function() {
-													if (this._securityPane._centerPane.childNodes.length > 0) {
-														CommonScan
-																.hideAdminsFromSecurity(this);
-													}
-												}));
-							});
+//			aspect
+//					.after(
+//							ecm.widget.ItemSecurityPane.prototype,
+//							"startup",
+//							function() {
+//								console.log("inside startup ItemSecurityPane");
+//								ready(lang
+//										.hitch(
+//												this,
+//												function() {
+//													if (this._securityPane._centerPane.childNodes.length > 0) {
+//														CommonScan
+//																.hideAdminsFromSecurity(this);
+//													}
+//												}));
+//							});
+//
+//			aspect.after(ecm.widget.ItemEditPane.prototype,
+//					"onCompleteRendering", function() {
+//						console.log("ItemEditPane onCompleteRendering");
+//						this._itemSecurityPane.render();
+//					});
+//
+//			aspect
+//					.after(
+//							ecm.widget.ItemSecurityPane.prototype,
+//							"render",
+//							function() {
+//								console.log("ItemSecurityPane render");
+//								self = this;
+//								if (this._rendered) {
+//									if (this._securityPane._centerPane.childNodes.length > 0) {
+//										CommonScan.hideAdminsFromSecurity(this);
+//									}
+//								}
+//
+//							});
+//
+//			aspect
+//					.after(
+//							ecm.widget.ItemSecurityPane.prototype,
+//							"onChange",
+//							function() {
+//								console.log("Security parameter");
+//								if (this._rendered) {
+//									if (this._securityPane._centerPane.childNodes.length > 0) {
+//										CommonScan.hideAdminsFromSecurity(this);
+//									}
+//								}
+//							});
+//			aspect.after(ecm.widget.SecurityPane.prototype, "onChange",
+//					function() {
+//						console.log("SecurityPane onChange");
+//						if (this._centerPane.childNodes.length > 0) {
+//							CommonScan.hideAdminsFromSecurity(this);
+//						}
+//
+//					});
+//			aspect.after(ecm.widget.SecurityPane.prototype,
+//					"renderPermissions", function() {
+//						console.log("SecurityPane renderPermissions");
+//						if (this._centerPane.childNodes.length > 0) {
+//							CommonScan.hideAdminsFromSecurity(this);
+//						}
+//
+//					});
+//			aspect.after(ecm.widget.SecurityPane.prototype, "_addPermissions",
+//					function() {
+//						console.log("SecurityPane _addPermissions");
+//						if (this._centerPane.childNodes.length > 0) {
+//							CommonScan.hideAdminsFromSecurity(this);
+//						}
+//					});
 
-			aspect.after(ecm.widget.ItemEditPane.prototype,
-					"onCompleteRendering", function() {
-						console.log("ItemEditPane onCompleteRendering");
-						this._itemSecurityPane.render();
-					});
-
-			aspect
-					.after(
-							ecm.widget.ItemSecurityPane.prototype,
-							"render",
-							function() {
-								console.log("ItemSecurityPane render");
-								self = this;
-								if (this._rendered) {
-									if (this._securityPane._centerPane.childNodes.length > 0) {
-										CommonScan.hideAdminsFromSecurity(this);
-									}
-								}
-
-							});
-
-			aspect
-					.after(
-							ecm.widget.ItemSecurityPane.prototype,
-							"onChange",
-							function() {
-								console.log("Security parameter");
-								if (this._rendered) {
-									if (this._securityPane._centerPane.childNodes.length > 0) {
-										CommonScan.hideAdminsFromSecurity(this);
-									}
-								}
-							});
-			aspect.after(ecm.widget.SecurityPane.prototype, "onChange",
-					function() {
-						console.log("SecurityPane onChange");
-						if (this._centerPane.childNodes.length > 0) {
-							CommonScan.hideAdminsFromSecurity(this);
-						}
-
-					});
-			aspect.after(ecm.widget.SecurityPane.prototype,
-					"renderPermissions", function() {
-						console.log("SecurityPane renderPermissions");
-						if (this._centerPane.childNodes.length > 0) {
-							CommonScan.hideAdminsFromSecurity(this);
-						}
-
-					});
-			aspect.after(ecm.widget.SecurityPane.prototype, "_addPermissions",
-					function() {
-						console.log("SecurityPane _addPermissions");
-						if (this._centerPane.childNodes.length > 0) {
-							CommonScan.hideAdminsFromSecurity(this);
-						}
-					});
-
+			
 			// aspect.after(ecm.widget.SecurityPane.prototype,"_onAdd",
 			// function() {
 			// console.log("SecurityPane _onAdd");
