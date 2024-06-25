@@ -85,16 +85,21 @@ define(
 								}
 								var docId = this.item.id;
 								DWObject.SetHTTPFormField("security_token", Request._security_token);
-								DWObject.SetHTTPFormField("criterias", dojojson .toJson(properties));
-								DWObject.SetHTTPFormField( "childComponentValues", dojojson .toJson(childComponentValues));
+								DWObject.SetHTTPFormField("criterias", dojojson.toJson(properties));
+								DWObject.SetHTTPFormField("childComponentValues", dojojson.toJson(childComponentValues));
 								DWObject.SetHTTPFormField("acl", dojojson.toJson(permissions));
 								DWObject.SetHTTPFormField("desktop", desktop);
-								DWObject.SetHTTPFormField("repositoryId", this.repository.id);
+								DWObject.SetHTTPFormField("repositoryId",this.repository.id);
 								DWObject.SetHTTPFormField("docid", docId);
 								DWObject.SetHTTPFormField("parm_content_source_type", contentSourceType);
 								DWObject.SetHTTPFormField("template_name", documentType);
 								DWObject.SetHTTPFormField("asMinorVersion", addAsMinorVersion);
 								DWObject.SetHTTPFormField("autoClassify", autoClassify);
+								DWObject.SetHTTPFormField("sourceId", 4);
+								DWObject.SetHTTPFormField("numberOfPages", DWObject.HowManyImagesInBuffer);
+								DWObject.SetHTTPFormField("oldDocId", this.oldDocumentId);
+								DWObject.SetHTTPFormField("properties", JSON.stringify(properties));
+
 
 								osId = this.objectStoreId;
 								if (objectStore)
@@ -577,8 +582,11 @@ define(
 
 						}, loadDocument : function(repository, items, callback,
 								teamspace, resultSet, parameterMap) {
+							var docInfo = this.item.id.split(",");
+							this.oldDocumentId = docInfo[docInfo.length - 1].replace("{", "").replace("}", "");
 							contentItemGeneralPane = this.addContentItemGeneralPane;
 							this.workItemAttachmentItem = this.item;
+							
 							if (this.workItemAttachmentItem.parent) {
 								this.workItem = this.workItemAttachmentItem.parent.parent;
 								this.isWorkItem = this.workItem && this.workItem.isInstanceOf(ecm.model.WorkItem);
