@@ -14,7 +14,7 @@ import javax.naming.NamingException;
 import com.sa.ds.icn.dms.plugin.exception.DatabaseException;
 
 public abstract class AbstractDAO implements AutoCloseable {
-	protected static final String DATA_SOURCE_NAME = "ARCHIVE_MOF";
+	protected static final String DATA_SOURCE_NAME = "DMS";
 	protected Connection con;
 	protected PreparedStatement stmt;
 	protected ResultSet rs;
