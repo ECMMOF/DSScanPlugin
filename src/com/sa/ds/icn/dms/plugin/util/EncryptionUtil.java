@@ -13,7 +13,7 @@ public class EncryptionUtil {
     private static final String AES_GCM_NO_PADDING = "AES/GCM/NoPadding";
     private static final int GCM_NONCE_LENGTH = 12; // 12 bytes for GCM nonce
     private static final int GCM_TAG_LENGTH = 16; // 16 bytes for GCM tag
-    private static final byte[] STATIC_KEY = "Mahfouzat_DataServe_Mahfouzat024".getBytes(StandardCharsets.UTF_8); // Example 32-byte key for AES-256
+    private static final byte[] STATIC_KEY = "i&have&access&to".getBytes(StandardCharsets.UTF_8); // Example 32-byte key for AES-256
 
  // Method to get the AES key from environment variables
     private static byte[] getKeyFromEnv() {

@@ -27,6 +27,7 @@ public abstract class AbstractDAO implements AutoCloseable {
 		initConn(datasourceName);
 	}
 
+
 	private Connection getConnection(String dataSource) throws SQLException, NamingException, DatabaseException {
 	    InitialContext initContext;
 	    javax.sql.DataSource source = null;
